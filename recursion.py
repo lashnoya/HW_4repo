@@ -59,10 +59,10 @@ def group_no_adj(start, nums, target):
     """
     if start >= len(nums):
         return target == 0
-    if start % 2 == 0:
-        return group_sum(start + 1, nums, target) or group_sum(start + 1, nums, target - nums[start])
+    if nums[start] + 1:
+        return group_no_adj(start + 2, nums, target) or group_no_adj(start + 2, nums, target - nums[start])
     else:
-        return group_sum(start + 1, nums, target) or group_sum(start + 1, nums, target - nums[start])
+        return group_no_adj(start + 1, nums, target) or group_no_adj(start + 1, nums, target - nums[start])
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -75,6 +75,12 @@ def group_sum_5(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
+    if start >= len(nums):
+        return target == 0
+    if nums[start] % 5 == 0:
+        return group_sum_5(start + 1, nums, target - nums[start])
+    else:
+        return group_sum_5(start + 1, nums, target) or group_sum_5(start + 1, nums, target - nums[start])
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -89,7 +95,12 @@ def group_sum_clump(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-
+    if start >= len(nums):
+        return target == 0
+    if nums[start] == nums[start] + 1:
+        return group_sum_clump(start + 1, nums, target - nums[start])
+    else:
+        return group_sum_clump(start + 1, nums, target) or group_sum_clump(start + 1, nums, target - nums[start])
 
 # TODO: Modify this function
 def split_array(nums):
