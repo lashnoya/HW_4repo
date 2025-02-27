@@ -16,8 +16,6 @@ UT EID 1: eet737
 UT EID 2: smk3946
 """
 
-
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to the
@@ -30,7 +28,6 @@ def group_sum(start, nums, target):
         return target == 0
     return group_sum(start + 1, nums, target) or group_sum(start + 1, nums, target - nums[start])
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum_6(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to the
@@ -45,9 +42,7 @@ def group_sum_6(start, nums, target):
     if nums[start] == 6:
         return group_sum_6(start + 1, nums, target - nums[start])
     return group_sum_6(start + 1, nums, target) or group_sum_6(start + 1, nums, target - nums[start])
-        
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_no_adj(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to
@@ -59,13 +54,8 @@ def group_no_adj(start, nums, target):
     """
     if start >= len(nums):
         return target == 0
-    if nums[start] + 1:
-        return group_no_adj(start + 2, nums, target) or group_no_adj(start + 2, nums, target - nums[start])
-    else:
-        return group_no_adj(start + 1, nums, target) or group_no_adj(start + 1, nums, target - nums[start])
-
-
-# TODO: Modify this function. You may delete this comment when you are done.
+    return group_no_adj(start + 1, nums, target) or group_no_adj(start + 2, nums, target - nums[start])
+   
 def group_sum_5(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to
@@ -83,7 +73,6 @@ def group_sum_5(start, nums, target):
         return group_sum_5(start + 1, nums, target) or group_sum_5(start + 1, nums, target - nums[start])
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum_clump(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to
@@ -97,8 +86,12 @@ def group_sum_clump(start, nums, target):
     """
     if start >= len(nums):
         return target == 0
-    if nums[start] == nums[start] + 1:
-        return group_sum_clump(start + 1, nums, target - nums[start])
+    # if start + 1 < len(nums):
+    #     if nums[start] == nums[start + 1]:
+    #         return group_sum_clump(start + 1, nums, target - nums[start])
+    # elif start - 1 >= 0:
+    #     if nums[start] == nums[start - 1]:
+    #         return group_sum_clump(start + 1, nums, target - nums[start])
     else:
         return group_sum_clump(start + 1, nums, target) or group_sum_clump(start + 1, nums, target - nums[start])
 
@@ -117,7 +110,6 @@ def split_array(nums):
     sol = []
     array_helper(0, n, sol, res, nums)
     new_lst = []
-     
     if nums == []:
         return True
     for index1, value1 in enumerate(res):
@@ -215,4 +207,3 @@ def split_53(nums):
     if nums_set == set_other:
         return True
     return False
-
