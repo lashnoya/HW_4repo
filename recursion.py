@@ -112,7 +112,34 @@ def split_array(nums):
     pre: len(nums) >= 0, nums will only contain ints
     post: return True if nums can be split, False otherwise
     """
-
+    n = len(nums)
+    res = []
+    sol = []
+    array_helper(0, n, sol, res, nums)
+    new_lst = []
+     
+    if nums == []:
+        return True
+    for index1, value1 in enumerate(res):
+        sum = 0
+        for index2, value2 in enumerate(value1):
+            sum += value2
+        if sum in new_lst:
+            return True
+        new_lst.append(sum)
+    return False
+  
+def array_helper(i, n, sol, res, nums):
+    """
+    help me
+    """
+    if i == n:
+        res.append(list(sol))
+        return res
+    array_helper(i+1, n, sol, res, nums)
+    sol.append(nums[i])
+    array_helper(i+1, n, sol, res, nums)
+    sol.pop()
 
 # TODO: Modify this function. You may delete this comment when you are done.
 def split_odd_10(nums):
@@ -124,6 +151,32 @@ def split_odd_10(nums):
     pre: len(nums) >= 0, nums will only contain ints
     post: return True if nums can be split, False otherwise
     """
+    n = len(nums)
+    res = []
+    sol = []
+    array_helper(0, n, sol, res, nums)
+    odd_lst = []
+    ten_lst = []
+    nums_set = set(nums)
+
+    if nums == []:
+        return False
+    for index1, value1 in enumerate(res):
+        sum = 0
+        for index2, value2 in enumerate(value1):
+            sum += value2
+        if sum % 2 == 1:
+            for elem in value1:
+             odd_lst.append(elem)
+        elif sum % 10 == 0:
+             for elem in value1:
+                ten_lst.append(elem)
+    
+    both_lst = odd_lst + ten_lst
+    set_other = set(both_lst)
+    if nums_set == set_other:
+        return True
+    return False
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -138,3 +191,28 @@ def split_53(nums):
     pre: len(nums) >= 0, nums will only contain ints
     post: return True if nums can be split, False otherwise
     """
+    n = len(nums)
+    res = []
+    sol = []
+    array_helper(0, n, sol, res, nums)
+    three_lst = []
+    five_lst = []
+    nums_set = set(nums)
+    if nums == []:
+        return True
+    for index1, value1 in enumerate(res):
+        sum = 0
+        for index2, value2 in enumerate(value1):
+            sum += value2
+        if sum % 3 == 0 and sum % 5 != 0:
+            for elem in value1:
+             three_lst.append(elem)
+        elif sum % 5 == 0:
+             for elem in value1:
+                five_lst.append(elem) 
+    both_lst = three_lst + five_lst
+    set_other = set(both_lst)
+    if nums_set == set_other:
+        return True
+    return False
+
